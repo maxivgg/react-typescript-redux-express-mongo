@@ -1,6 +1,6 @@
 let router = require("express").Router();
-const salesRouter = require("./sales");
+const postsRouter = require("./posts");
 
-router.use("/api/sales", salesRouter)
+router.use("/api/posts", postsRouter)
 
 module.exports = router;

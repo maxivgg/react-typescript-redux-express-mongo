@@ -1,5 +1,5 @@
 const db = require("../models");
-const Sales = db.sales;
+const Posts = db.posts;
 
 const validateCustomerType = (type, res) => {
   if (type !== "business" && type !== "particular") {
@@ -46,7 +46,7 @@ const validateFiscalAddress = (address, res) => {
 };
 
 exports.findAll = (req, res) => {
-  Sales.find({}).limit(20)
+  Posts.find({}).limit(20)
     .then((data) => res.send(data))
     .catch((err) => {
       res.status(500).send({
@@ -108,7 +108,7 @@ exports.findOne = (req, res) => {
     });
 };
 
-exports.findOneSaleDate = (req, res) => {
+exports.findOneTitle = (req, res) => {
 
   validateEmail(req.params.email, res);
 

@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import axios from "axios";
 import { FETCH_POSTS, ADD_POST, DELETE_POST, PostActionTypes, Post, EDIT_POST, UPDATE_POST, SHOW_FORM } from "../types";
 
-const URL= 'https://jsonplaceholder.typicode.com/posts';
+const URL= 'https://app-react-express-mongo.herokuapp.com/api/posts';
 
 export const fetchPosts = () => async (dispatch: Dispatch<PostActionTypes>) => {
   await axios
