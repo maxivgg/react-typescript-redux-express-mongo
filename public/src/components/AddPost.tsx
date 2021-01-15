@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../reducers";
 
 export default function AddPost() {
-  const [_id, setId] = useState("");
+  const [_id, set_Id] = useState("");
+  const [id] = useState(uuidv4());
+  const [userId] = useState(2);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const dispatch = useDispatch();
@@ -19,12 +21,11 @@ export default function AddPost() {
 
   const handleSubmit = () => {
     if (_id) {
-      dispatch(updatePost({ _id, title, body }));
+      dispatch(updatePost({ _id, userId, id, title, body }));
     } else {
-      setId(uuidv4());
-      dispatch(addPost({ _id, title, body }));
+      dispatch(addPost({ userId, id, title, body }));
     }
-    setId("");
+    set_Id("");
     setTitle("");
     setBody("");
     onShowForm();
@@ -32,7 +33,7 @@ export default function AddPost() {
 
   useEffect(() => {
     if (postEdit) {
-      setId(postEdit._id);
+      set_Id(postEdit._id);
       setTitle(postEdit.title);
       setBody(postEdit.body);
     }

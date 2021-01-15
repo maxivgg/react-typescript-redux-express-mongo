@@ -17,7 +17,7 @@ interface DeletePostsAction {
 
 interface AddPostsAction {
   type: typeof ADD_POST;
-  payload: Post;
+  payload: newPost;
 }
 
 interface EditPostsAction {
@@ -36,6 +36,15 @@ interface ShowFormAction {
   
 export interface Post {
   _id: string;
+  userId: number;
+  id: string;
+  title: string;
+  body: string;
+}
+
+export interface newPost {
+  userId: number;
+  id: string;
   title: string;
   body: string;
 }

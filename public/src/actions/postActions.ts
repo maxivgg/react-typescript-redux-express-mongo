@@ -9,6 +9,7 @@ import {
   EDIT_POST,
   UPDATE_POST,
   SHOW_FORM,
+  newPost,
 } from "../types";
 
 const URL =
@@ -28,7 +29,7 @@ export const fetchPosts = () => async (dispatch: Dispatch<PostActionTypes>) => {
     .catch((error) => console.log(error));
 };
 
-export const addPost = (request: Post) => async (
+export const addPost = (request: newPost) => async (
   dispatch: Dispatch<PostActionTypes>
 ) => {
   await axios
