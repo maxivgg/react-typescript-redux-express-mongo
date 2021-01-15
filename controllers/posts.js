@@ -129,23 +129,8 @@ exports.findOneTitle = (req, res) => {
 };
 
 exports.update = (req, res) => {
-  if (
-    !req.body.customerType ||
-    !req.body.email ||
-    !req.body.buildingsIds ||
-    !req.body.fiscalAddress
-  ) {
-    return res.status(400).send({
-      message: `Content cannot be empty!`,
-    });
-  }
-
-  validateCustomerType(req.body.customerType, res);
-  validateEmail(req.body.email, res);
-  validateFiscalAddress(req.body.fiscalAddress, res);
-
-  Customer.findOneAndUpdate({ _id: req.params.id }, req.body)
-    .then((data) => res.send({ message: `Customer was updated` }))
+  Posts.findOneAndUpdate({ _id: req.params.id }, req.body)
+    .then((data) => res.send({ message: `Post was updated`}))
     .catch((err) => {
       res.status(500).send({
         message: err.message || "Some error",
@@ -155,8 +140,8 @@ exports.update = (req, res) => {
 
 exports.delete = (req, res) => {
 
-  Customer.findOneAndRemove({ _id: req.params.id })
-    .then((data) => res.send({ message: `Customer was removed` }))
+  Posts.findOneAndRemove({ _id: req.params.id })
+    .then((data) => res.send({ message: `Post was removed` }))
     .catch((err) => {
       res.status(500).send({
         message: err.message || "Some error",
