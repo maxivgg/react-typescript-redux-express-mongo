@@ -29,7 +29,7 @@ export function postReducer(
     case ADD_POST:
       return {
         ...state,
-        posts: [...state.posts, action.meta],
+        posts: [...state.posts, action.payload],
       };
     case EDIT_POST:
       return {
@@ -42,9 +42,9 @@ export function postReducer(
         ...state,
         postEdit: null,
         posts: state.posts.map((post: Post) => {
-          if (post.id === action.meta.id) {
-            post.title = action.meta.title;
-            post.body = action.meta.body;
+          if (post._id === action.payload._id) {
+            post.title = action.payload.title;
+            post.body = action.payload.body;
           }
           return post;
         }),
@@ -53,7 +53,7 @@ export function postReducer(
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter((post: Post) => post.id !== action.meta.id),
+        posts: state.posts.filter((post: Post) => post._id !== action.meta._id),
       };
 
       case SHOW_FORM:

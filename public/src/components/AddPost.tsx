@@ -2,36 +2,37 @@ import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { v4 as uuidv4 } from "uuid";
-import { addPost, updatePost, showForm} from '../actions/postActions'
+import { addPost, updatePost, showForm } from "../actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../reducers";
 
 export default function AddPost() {
-	const [id, setId] = useState("");
+  const [_id, setId] = useState("");
   const [title, setTitle] = useState("");
-	const [body, setBody] = useState("");
-	const dispatch = useDispatch()
-	const postEdit = useSelector((state: RootState) => state.posts.postEdit);
-	
-	const onShowForm = () => {
-		dispatch(showForm())
-	}
+  const [body, setBody] = useState("");
+  const dispatch = useDispatch();
+  const postEdit = useSelector((state: RootState) => state.posts.postEdit);
+
+  const onShowForm = () => {
+    dispatch(showForm());
+  };
 
   const handleSubmit = () => {
-    if (id) {
-      dispatch(updatePost(id, title, body));
+    if (_id) {
+      dispatch(updatePost({ _id, title, body }));
     } else {
-      dispatch(addPost(uuidv4(), title, body));
+      setId(uuidv4());
+      dispatch(addPost({ _id, title, body }));
     }
     setId("");
     setTitle("");
-		setBody("");
-		onShowForm();
+    setBody("");
+    onShowForm();
   };
 
   useEffect(() => {
     if (postEdit) {
-      setId(postEdit.id);
+      setId(postEdit._id);
       setTitle(postEdit.title);
       setBody(postEdit.body);
     }
@@ -40,7 +41,7 @@ export default function AddPost() {
 
   return (
     <div>
-      <h3>{id !== "" ? "Edit post" : "Add new post"}</h3>
+      <h3>{_id !== "" ? "Edit post" : "Add new post"}</h3>
       <TextField
         label="Title"
         variant="outlined"
@@ -64,5 +65,6 @@ export default function AddPost() {
       >
         Submit
       </Button>
-	</div>)
+    </div>
+  );
 }

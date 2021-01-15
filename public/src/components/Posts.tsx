@@ -40,7 +40,6 @@ export default function Posts() {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>id</TableCell>
                   <TableCell>Title</TableCell>
                   <TableCell>Body</TableCell>
                   <TableCell>Actions</TableCell>

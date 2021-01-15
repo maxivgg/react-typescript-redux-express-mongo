@@ -7,11 +7,11 @@ import { deletePost, editPost, showForm } from "../actions/postActions";
 import { useDispatch } from "react-redux";
 
 export default function Post(props: { post: PostType }) {
-  const { id, title, body } = props.post;
+  const { _id, title, body } = props.post;
 	const dispatch = useDispatch();
 	
-	const onDeletePost = (id: string) => {
-		dispatch(deletePost(id))
+	const onDeletePost = (_id: string) => {
+		dispatch(deletePost(_id))
 	}
 
 	const onEditPost = (post: PostType) => {
@@ -22,16 +22,13 @@ export default function Post(props: { post: PostType }) {
 
   return (
     <TableRow>
-      <TableCell component="th" scope="row">
-        {id}
-      </TableCell>
       <TableCell>{title}</TableCell>
       <TableCell>{body}</TableCell>
       <TableCell>
         <Button variant="contained" color="primary" onClick={() => onEditPost(props.post)}>
           edit
         </Button>
-        <Button variant="contained" color="secondary" onClick={() => onDeletePost(id)}>
+        <Button variant="contained" color="secondary" onClick={() => onDeletePost(_id)}>
           delete
         </Button>
       </TableCell>

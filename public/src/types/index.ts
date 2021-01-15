@@ -12,12 +12,12 @@ interface FetchPostsAction {
 
 interface DeletePostsAction {
   type: typeof DELETE_POST;
-  meta: { id: string };
+  meta: { _id: string };
 }
 
 interface AddPostsAction {
   type: typeof ADD_POST;
-  meta: Post;
+  payload: Post;
 }
 
 interface EditPostsAction {
@@ -27,7 +27,7 @@ interface EditPostsAction {
 
 interface UpdatePostsAction {
   type: typeof UPDATE_POST;
-  meta: { id: string; title: string; body: string };
+  payload: Post;
 }
 
 interface ShowFormAction {
@@ -35,8 +35,7 @@ interface ShowFormAction {
   }
   
 export interface Post {
-  userId: string;
-  id: string;
+  _id: string;
   title: string;
   body: string;
 }
