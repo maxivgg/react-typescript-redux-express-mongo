@@ -1,9 +1,13 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { Provider } from "react-redux";
+import App from "./App";
+import { store } from "./store";
+import { render } from "@testing-library/react";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+function renderWithProviders(component) {
+  return render(<Provider store={store}>{component}</Provider>);
+}
+
+test("init app", () => {
+  const { getByRole } = renderWithProviders(<App />);
+  getByRole("app");
 });

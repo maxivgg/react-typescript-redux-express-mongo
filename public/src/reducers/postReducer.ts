@@ -10,7 +10,7 @@ import {
   SHOW_FORM
 } from "../types";
 
-const initialState: PostState = {
+export const initialState: PostState = {
   posts: [],
   postEdit: null,
   showForm: false
