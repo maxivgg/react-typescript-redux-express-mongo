@@ -13,7 +13,6 @@ exports.findAll = (req, res) => {
 
 exports.create = (req, res) => {
   if (!req.body.userId || 
-    !req.body.id ||
      !req.body.title || 
      !req.body.body ){
     res.status(400).send({
@@ -22,11 +21,10 @@ exports.create = (req, res) => {
     } 
 
     
-  const { userId, id, title, body } = req.body;
+  const { userId, title, body } = req.body;
 
   const newPost = new Posts({
     userId,
-    id,
     title,
     body,
   });
